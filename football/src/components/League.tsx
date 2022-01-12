@@ -4,9 +4,12 @@ import Teams from './Teams.tsx';
 
 function League () {
 
-  
+//declare the state
 const[leagues, setLeague] = useState([])
 const[teams, setTeams] = useState(null)
+
+
+//fetching the data
     useEffect(() => {
       fetch(`https://www.thesportsdb.com/api/v1/json/2/all_leagues.php`)
       .then((res) => res.json())
@@ -17,38 +20,35 @@ const[teams, setTeams] = useState(null)
          } 
        })
         setLeague(fiveLeagues);
+        
       })
       .catch((e) => {
         console.log("error", e);
       });
     }, []); 
     
+    //fetching the team (according to the league)
       const fetchTeam = (e) => {
-       
         fetch(`https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=${e.target.name}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log("data teams", data);
-          setTeams(data)
-  
+          setTeams(data.teams)
         })
         .catch((e) => {
           console.log("error", e);
         });
       }
 
-    
-      // console.log("teams : ", this.state.teams);
       return (
-      <div>
+      <div className='main-container'>
         
         <div>
           {leagues.map((element, i) => {
-            return <button key={i} name={element.strLeague} onClick={fetchTeam}>{element.strLeague} </button>;
+            return <button className='buttons' key={i} name={element.strLeague} onClick={fetchTeam}>{element.strLeague} </button>;
           })}
         </div>
-        <div>
-          {teams? <Teams team={teams} />: <h2>Choose a league</h2> }
+        <div >
+          {teams? <Teams team={teams} />: <h2>You need to choose a league to see their teams</h2> }
          
         </div>
 

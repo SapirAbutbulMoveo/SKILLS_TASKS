@@ -5,12 +5,15 @@ import React from 'react';
 
 
 function EachTeam (props) {
-    
-    
+  
+     const { teamName, teamLogo} = props.team
+
       return (
-      <div>
-          <h2>{props.teamName}</h2>
-          <img alt='Team logo' src={props.teamLogo} />
+       
+        
+      <div className='teamCard'>
+          <h2 className='teamName'>{teamName}</h2>
+          <img className='teamLogo' alt={`${teamName}'s logo`} src={teamLogo} />
 
       </div>
     );
@@ -18,20 +21,4 @@ function EachTeam (props) {
     
   
   export default EachTeam;
-// class EachTeam extends React.Component {
-    
-//     render(){
-//       console.log("this.props", this.props);
-//       return (
-//       <div>
-//           <h2>{this.props.teamName}</h2>
-//           <img alt='Team logo' src={this.props.teamLogo} />
-
-//       </div>
-//     );
-//     };
-    
-//   };
-  
-//   export default EachTeam;
   

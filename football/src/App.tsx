@@ -3,8 +3,8 @@ import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Football League</h1>
+    <div>
+      <h1 className='header'>Football League</h1>
 
       <League/>
       

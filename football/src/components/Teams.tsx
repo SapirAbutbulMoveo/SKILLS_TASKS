@@ -5,17 +5,21 @@ import EachTeam from './EachTeam.tsx';
 
 
 function Teams (props) {
-  console.log("pppp", props);
-  
+  class Team {
+    constructor(
+     readonly teamName:string,
+     readonly teamLogo: string,
+    ){}
     
+  }
       return (
 
       <div>
 
-        <div>
-          {props.team.teams.map((element, i) => {
-            // console.log("each team : ", element.strTeam , "rrr" , element.strTeamLogo);
-            return <EachTeam key={i} teamName={element.strTeam} teamLogo={element.strTeamLogo}/>
+        <div className='teams-container'>
+          {props.team.map((element, i) => {
+            const eachTeam = new Team(element.strTeam, element.strTeamLogo)
+            return <EachTeam key={i} team = {eachTeam}/>
           })}
         </div>
 
